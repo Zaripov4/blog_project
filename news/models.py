@@ -11,4 +11,4 @@ class News(models.Model):
     title = models.CharField(max_length=100)
     body = models.CharField(max_length=1000)
     category = models.ForeignKey
-    picture = models.ImageField()
+    picture = models.ImageField(upload_to='images/')

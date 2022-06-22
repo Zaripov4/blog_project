@@ -1,9 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import SimpleRouter
+
+router = SimpleRouter()
+router.register('', views.NewViewSet)
+
 
 urlpatterns = [
-    path('login/', views.login),
-    path('user/', views.get_data),
-    path('register/', views.register),
-    path('news/', views.news),
+    path('news/', include(router.urls))
 ]
