@@ -1,5 +1,4 @@
 from django.db import models
-from django import forms
 
 
 class User(models.Model):
@@ -13,6 +12,10 @@ class News(models.Model):
     body = models.CharField(max_length=1000)
     category = models.ForeignKey
     picture = models.ImageField(upload_to='images/')
+    views = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
