@@ -9,8 +9,8 @@ class News(models.Model):
     body = models.CharField(max_length=1000)
     category = models.ForeignKey
     picture = models.ImageField(upload_to='images/')
-    views = models.IntegerField(default=0)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    views = models.IntegerField(default=0, editable=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, editable=False)
 
     def __str__(self):
         return self.title
