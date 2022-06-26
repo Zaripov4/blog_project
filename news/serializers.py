@@ -9,11 +9,20 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class NewsSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(many=True)
+    comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
         model = News
         fields = '__all__'
+
+        extra_kwargs = {
+            'author': {
+                'read_only': True
+            },
+            'views': {
+                'read_only': True
+            }
+        }
 
 
 class NewListSerializer(serializers.ModelSerializer):

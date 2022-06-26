@@ -1,10 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-
-class User(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=40)
-    email = models.EmailField()
+User = get_user_model()
 
 
 class News(models.Model):
@@ -13,6 +10,7 @@ class News(models.Model):
     category = models.ForeignKey
     picture = models.ImageField(upload_to='images/')
     views = models.IntegerField(default=0)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
@@ -30,4 +28,4 @@ class Comment(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return 'Comment {} by {}'.format(self.body, self.name)
+        return f'Comment {self.body} by {self.name}'

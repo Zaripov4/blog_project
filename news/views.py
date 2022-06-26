@@ -19,6 +19,9 @@ class NewViewSet(viewsets.ModelViewSet):
         obj.save()
         return super().retrieve(request, *args, **kwargs)
 
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
