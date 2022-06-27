@@ -1,4 +1,4 @@
-from .models import News, Comment
+from .models import News, Comment, Category
 from django.contrib import admin
 
 
@@ -14,3 +14,9 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ('title', 'body', 'picture')
     search_fields = ('title',)
     readonly_fields = ['views', 'author']
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)

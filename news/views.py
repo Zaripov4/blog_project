@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import News, Comment
-from .serializers import NewsSerializer, CommentSerializer, NewListSerializer
+from .models import News, Comment, Category
+from .serializers import NewsSerializer, CommentSerializer, NewListSerializer, CategorySerializer
 
 
 class NewViewSet(viewsets.ModelViewSet):
@@ -26,3 +26,8 @@ class NewViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from news.models import News, Comment
+from news.models import News, Comment, Category
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -32,3 +32,11 @@ class NewListSerializer(serializers.ModelSerializer):
             'id',
             'title',
         )
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    news = NewsSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Category
+        fields = '__all__'

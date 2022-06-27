@@ -25,9 +25,9 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Geology V-HOST API",
+        title="News_Blog V-HOST API",
         default_version='v1',
-        description="Geologiya universiteti video hosting platformasi",
+        description="Yangiliklar sayti",
         terms_of_service="https://www.google.com/",
         contact=openapi.Contact(email="geology.vh@gmail.com"),
         license=openapi.License(name="BSD License"),

@@ -4,10 +4,17 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
 class News(models.Model):
     title = models.CharField(max_length=100)
     body = models.CharField(max_length=1000)
-    category = models.ForeignKey
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='category')
     picture = models.ImageField(upload_to='images/')
     views = models.IntegerField(default=0, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, editable=False)
