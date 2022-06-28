@@ -35,7 +35,7 @@ class NewListSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    news = NewsSerializer(many=True, read_only=True)
+    # news = NewsSerializer(many=True, read_only=True)
 
     class Meta:
         model = Category

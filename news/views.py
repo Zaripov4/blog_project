@@ -1,4 +1,7 @@
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, filters
+
+from .filters import NewsFilter
 from .models import News, Comment, Category
 from .serializers import NewsSerializer, CommentSerializer, NewListSerializer, CategorySerializer
 
@@ -6,6 +9,11 @@ from .serializers import NewsSerializer, CommentSerializer, NewListSerializer, C
 class NewViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,]
+    filterset_fields = ('category__name', 'author', 'author__username')
+    ordering = ('-category', )
+    search_fields = ('title', 'body', )
+    ordering_fields = ('id', 'title', 'category', )
 
     def get_serializer_class(self):
         if self.action == 'list':
