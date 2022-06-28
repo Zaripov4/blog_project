@@ -16,14 +16,27 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=200)),
             ],
         ),
         migrations.AlterField(
             model_name='news',
             name='author',
-            field=models.ForeignKey(editable=False, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                editable=False,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
             model_name='news',
@@ -33,6 +46,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='news',
             name='category',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='news.category'),
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to='news.category',
+            ),
         ),
     ]

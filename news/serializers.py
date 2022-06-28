@@ -16,12 +16,9 @@ class NewsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
         extra_kwargs = {
-            'author': {
-                'read_only': True
-            },
-            'views': {
-                'read_only': True
-            }
+            'author': {'read_only': True},
+            'views': {'read_only': True},
+            'picture': {'required': False},
         }
 
 
@@ -31,6 +28,7 @@ class NewListSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'title',
+            'body',
         )
 
 

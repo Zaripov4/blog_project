@@ -26,7 +26,7 @@ from drf_yasg.views import get_schema_view
 schema_view = get_schema_view(
     openapi.Info(
         title="News_Blog V-HOST API",
-        default_version='v1',
+        default_version="v1",
         description="Yangiliklar sayti",
         terms_of_service="https://www.google.com/",
         contact=openapi.Contact(email="geology.vh@gmail.com"),
@@ -36,12 +36,18 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/', include('news.urls')),
-    path('docs/', schema_view.with_ui('swagger', cache_timeout=0),
-         name='docs'),
-    path('docs2/', schema_view.with_ui('redoc', cache_timeout=0),
-         name='docs2'),
+    path("admin/", admin.site.urls),
+    path(
+        "api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"
+    ),
+    path(
+        "api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"
+    ),
+    path("api/", include("news.urls")),
+    path(
+        "docs/", schema_view.with_ui("swagger", cache_timeout=0), name="docs"
+    ),
+    path(
+        "docs2/", schema_view.with_ui("redoc", cache_timeout=0), name="docs2"
+    ),
 ]
