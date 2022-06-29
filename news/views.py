@@ -22,7 +22,7 @@ class NewViewSet(viewsets.ModelViewSet):
         filters.OrderingFilter,
     ]
     filterset_fields = ("category__name", "author", "author__username")
-    ordering = ("-category",)
+    ordering = ("-id",)
     search_fields = (
         "title",
         "body",

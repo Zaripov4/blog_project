@@ -15,8 +15,8 @@ class Category(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=100)
-    body = models.CharField(max_length=1000)
+    title = models.CharField(max_length=1000)
+    body = models.CharField(max_length=10000)
     category = models.ForeignKey(
         Category, on_delete=models.RESTRICT, null=True, related_name='news'
     )
