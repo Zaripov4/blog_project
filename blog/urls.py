@@ -50,4 +50,7 @@ urlpatterns = [
     path(
         "docs2/", schema_view.with_ui("redoc", cache_timeout=0), name="docs2"
     ),
+    path(
+        'account/', include('account.urls')
+    ),
 ]

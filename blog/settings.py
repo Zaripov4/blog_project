@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "django_filters",
     'taggit',
+    'account',
 ]
 
 MIDDLEWARE = [
