@@ -1,11 +1,14 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from taggit.managers import TaggableManager
 
 User = get_user_model()
 
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.name
@@ -24,6 +27,9 @@ class News(models.Model):
     )
     like = models.ManyToManyField(User, related_name='news_like')
     dislike = models.ManyToManyField(User, related_name='news_dislike')
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.title
@@ -44,6 +50,7 @@ class Comment(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
         ordering = ['created_on']
