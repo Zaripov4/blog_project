@@ -1,6 +1,12 @@
-from django.urls import path
-from .api import RegisterApi
+from django.urls import path, include
+from rest_framework.routers import SimpleRouter
+
+from account.api import UserViewSet
+
+router = SimpleRouter()
+router.register('', UserViewSet)
+
 
 urlpatterns = [
-      path('register/', RegisterApi.as_view()),
+      path('', include(router.urls)),
 ]
