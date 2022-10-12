@@ -24,30 +24,27 @@ class UserSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
 
 
-class PasswordResetSerializer(serializers.ModelSerializer):
+class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=150)
 
 
-class PasswordResetConfirmSerializer(serializers.ModelSerializer):
+class PasswordResetConfirmSerializer(serializers.Serializer):
     password = serializers.CharField(required=True, max_length=255)
 
-    extra_kwargs = {
-        'password': {'write_only': True, 'min_length': 8,
-                     'style': {'input_type': password}}
-    }
-
     def validate(self, attrs):
-        password = attrs['password']
-        if password:
-            try:
-                password_validation.validate_password(password, password)
-            except:
-                raise ValidationError('error')
-
+        try:
+            password_validation.validate_password(attrs['password'])
+        except ValidationError:
+            raise ValidationError('error')
         return attrs
 
 
 class ChangePasswordSerializer(serializers.ModelSerializer):
-    model = User
+    class Meta:
+        model = User
+        fields = (
+            'old_password',
+            'new_password',
+        )
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)

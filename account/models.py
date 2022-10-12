@@ -40,6 +40,7 @@ class CustomUserManager(UserManager):
         user = self.model(
             email=self.normalize_email(email),
             username=username,
+            is_active=False,
             **extra_fields,
         )
         user.set_password(password)
@@ -80,6 +81,22 @@ class ResetCode(models.Model):
 
     def save(self, *args, **kwargs):
         ResetCode.objects.filter(user=self.user).delete()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.user.email
+
+
+class ActivationCode(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    code = models.UUIDField(unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('user',)
+
+    def save(self, *args, **kwargs):
+        ActivationCode.objects.filter(user=self.user).delete()
         super().save(*args, **kwargs)
 
     def __str__(self):
