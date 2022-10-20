@@ -12,7 +12,7 @@ from .serializers import (
 )
 from rest_framework.views import APIView
 from .mail import send_password_reset, send_activation_code
-
+    
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
